@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "robocon2024"
+version = "0.1.0"
+description = "Robocon Online 2024 Tutorial"
+authors = ["JerzyGlowacki <jerzy.glowacki@niceproject.eu>"]
+license = "GPL V3"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+robotframework = "^7.0"
+robotframework-browser = "^18.2.0"
+PyYAML = "^6.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
