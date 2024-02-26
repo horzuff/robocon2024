@@ -299,6 +299,20 @@ typing-extensions = ">=4.5.0"
 wrapt = ">=1.15.0"
 
 [[package]]
+name = "robotframework-debugger"
+version = "0.2.1"
+description = "A Robot Framework Listener to try keywords and pause execution on failure"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "robotframework-debugger-0.2.1.tar.gz", hash = "sha256:8421507f48a22cf531edeb1e69dd00b202aedabcb6525f3159d211b6552712a4"},
+    {file = "robotframework_debugger-0.2.1-py3-none-any.whl", hash = "sha256:a2390492bce731e0883cc1643fd3e48abbe380fd1b38233fa836eea6d5b15ef2"},
+]
+
+[package.dependencies]
+robotframework = ">=3.2.1"
+
+[[package]]
 name = "robotframework-pythonlibcore"
 version = "4.3.0"
 description = "Tools to ease creating larger test libraries for Robot Framework using Python."
@@ -418,4 +432,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "1b66abec4b66135cac185aa97b127247e8e4f2ed5c1b0eda157065b3291d6833"
+content-hash = "d942978cff2da07826da98a1cee6eb00bd476842e66308fa8768969dee553514"
