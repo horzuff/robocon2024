@@ -1,7 +1,6 @@
 *** Settings ***
 Library            Browser
 Library            String
-Library            Debugger
 
 *** Test Cases ***
 Sauce labs test
@@ -19,4 +18,3 @@ Sauce labs test
     Browser.Fill Text    xpath=//input[@name='user-name' and @id='user-name']    ${login}
     Browser.Fill Secret    id=password    $password
     Browser.Click    input#login-button
-    Debugger.Debug
