@@ -3,24 +3,18 @@ Library            Browser
 Library            String
 Library            Debugger
 Library            Collections
+Resource           .\utils\browser_management.resource
+Resource           .\pages\login_page.resource
+Resource           .\pages\main_page.resource
 
 *** Test Cases ***
 Sauce labs test 1
-    Browser.New Browser    chromium    False    slowMo=0:00:00.5
-    Browser.New Context    viewport={"width": 1366, "height": 768}
-    Browser.New Page    url=https://www.saucedemo.com/
-    ${login field text}=    Browser.Get Text    id=login_credentials
-    ${password field text}=    Browser.Get Text    css=div.login_password
-    ${logins}=    String.Fetch from right    ${login field text}    :
-    ${passwords}=    String.Fetch from right   ${password field text}    :
-    @{logins}=    String.Split String    ${logins}
-    @{passwords}=    String.Split String   ${passwords}
+    browser_management.Set up browser    headless=False    viewport={"width": 1360, "height": 766}
+    @{logins}=    login_page.Get available logins
+    ${password}=    login_page.Get password
     VAR    ${login}    ${logins}[0]    scope=SUITE
-    VAR    ${password}    ${passwords}[0]    scope=SUITE
-    Browser.Fill Text    xpath=//input[@name='user-name' and @id='user-name']    ${login}
-    Browser.Fill Secret    id=password    $password
-    Browser.Click    input#login-button
-    Browser.Click    xpath=//div[text()="Sauce Labs Onesie"]/ancestor::div[@class="inventory_item_description"]//button[@id="add-to-cart-sauce-labs-onesie"]
+    login_page.Login    ${login}    ${password}
+    main_page.Add item to cart    Sauce Labs Onesie
     Browser.Click    id=shopping_cart_container
     Browser.Click    id=checkout
     Browser.Fill Text    id=first-name    Rob
