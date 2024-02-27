@@ -49,11 +49,10 @@ Sauce Labs test 2
         ${item name}=    String.Convert To Lower Case    ${item name}
         Collections.Append To List    @{items}    ${item name}
     END
-    FOR    ${index}    ${item}    IN ENUMERATE    @{items}
-        IF    ${index} < (len(@{items})-1)
-            BuiltIn.Should Be True    ${item} > ${items}[${index+1}]
-        END
-    END
+    ${actual order items}=    Collections.Copy List    ${items}
+    Collections.Sort List    ${items}
+    Collections.Reverse List    ${items}
+    BuiltIn.Should Be Equal    ${items}    ${actual order items}
     
 
     Debugger.Debug
