@@ -21,6 +21,8 @@ Sauce labs test 1
     Browser.Fill Secret    id=password    $password
     Browser.Click    input#login-button
     Browser.Click    xpath=//div[text()="Sauce Labs Onesie"]/ancestor::div[@class="inventory_item_description"]//button[@id="add-to-cart-sauce-labs-onesie"]
+    Browser.Click    xpath=//div[text()="Sauce Labs Bike Light"]/ancestor::div[@class="inventory_item_description"]//button[@id="add-to-cart-sauce-labs-bike_light"]
+    Browser.Click    xpath=//div[text()="Sauce Labs Backpack"]/ancestor::div[@class="inventory_item_description"]//button[@id="add-to-cart-sauce-labs-backpack"]
     Browser.Click    id=shopping_cart_container
     Browser.Click    id=checkout
     Browser.Fill Text    id=first-name    Rob
