@@ -7,7 +7,10 @@ Library            Collections
 
 Add item to cart
     [Arguments]    ${item name}
-    Browser.Click    xpath=//div[text()="${item name}"]/ancestor::div[@class="inventory_item_description"]//button[contains(@id,"add-to-cart-")]
+    ${lowercase itemname}=    String.Convert To Lower Case    ${item name}
+    ${dash separated itemname}=    String.Replace String    ${lowercase itemname}    ${SPACE}    -
+    VAR    ${add item locator}    id=add-to-cart-${dash separated itemname}
+    Browser.Click    ${add item locator}
 
 Set sorting
     [Arguments]    ${sorting type}
