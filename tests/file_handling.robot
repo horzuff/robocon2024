@@ -1,8 +1,6 @@
 *** Settings ***
 Library            Browser
 Library            OperatingSystem
-Library            String
-Library            Collections
 Resource           utils${/}browser_management.resource
 
 *** Test Cases ***
