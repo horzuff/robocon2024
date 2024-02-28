@@ -2,30 +2,35 @@
 Library            Browser
 Library            String
 Library            Collections
+Variables          locators${/}products_page.yaml
 
 *** Keywords ***
 
 Add item to cart
     [Arguments]    ${item name}
-    Browser.Click    xpath=//div[text()='${item name}'']/ancestor::div[@class='inventory_item_description']//button[contains(@id,'add-to-cart-')]
+    ${lowercase itemname}=    String.Convert To Lower Case    ${item name}
+    ${dash separated itemname}=    String.Replace String    ${lowercase itemname}    ${SPACE}    -
+    #the following step is not mandatory, but I like to include it to make it more explicit what happens here
+    ${add item locator}=    BuiltIn.Replace Variables   ${add item to cart by name}
+    Browser.Click    ${add item locator}
 
 Set sorting
     [Arguments]    ${sorting type}
-    Browser.Click    css=span.select_container
-    Browser.Click    xpath=//option[@value='${sorting type}']
+    Browser.Click    ${sorting dropdown}
+    Browser.Click    ${sorting option.${sorting type}}
 
 Validate sorting
     [Arguments]    ${sorting type}
     @{items}=    BuiltIn.Create List
     IF    '${sorting type}' in ['az', 'za']
-        ${item elements}=    Browser.Get Elements    xpath=//div[contains(@class,'inventory_item_name')]
+        ${item elements}=    Browser.Get Elements    ${item name label}
         FOR    ${element}    IN    @{item elements}
             ${item name}=    Browser.Get Text    ${element}
             ${item name}=    String.Convert To Lower Case    ${item name}
             Collections.Append To List    @{items}    ${item name}
         END
     ELSE IF    '${sorting type}' in ['lohi', 'hilo']
-        ${item elements}=    Browser.Get Elements    xpath=//div[contains(@class,'inventory_item_price')]
+        ${item elements}=    Browser.Get Elements    ${item price label}
         FOR    ${element}    IN    @{item elements}
             ${item name}=    Browser.Get Text    ${element}
             ${item name}=    String.Convert To Lower Case    ${item name}

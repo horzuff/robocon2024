@@ -38,3 +38,4 @@ Sauce Labs test 2
     products_page.Set sorting    za
     products_page.Validate sorting    za
     header_area.Logout
+    Browser.Close Browser

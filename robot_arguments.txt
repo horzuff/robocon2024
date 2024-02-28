@@ -1,3 +1,4 @@
 --listener Debugger
 --outputdir .\results
 --loglevel TRACE
+--pythonpath .\resources

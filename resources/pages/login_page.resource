@@ -2,6 +2,7 @@
 Library            Browser
 Library            String
 Variables          locators${/}login_page.yaml
+Variables          locators${/}header_area.yaml
 
 *** Keywords ***
 Get available logins
@@ -20,3 +21,5 @@ Login
     Browser.Fill Text    ${username input}    ${login}
     Browser.Fill Secret    ${password input}    $password
     Browser.Click    ${login button}
+    Browser.Wait For Elements State    ${menu button}    visible
+    Browser.Wait For Elements State    ${shopping cart button}    visible
