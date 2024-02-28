@@ -20,7 +20,7 @@ Sauce labs test 1
     Browser.Fill Secret    id=password    $password
     Browser.Click    input#login-button
     Browser.Click    id=add-to-cart-sauce-labs-onesie
-    Browser.Click    id=add-to-cart-sauce-labs-bike_light
+    Browser.Click    id=add-to-cart-sauce-labs-bike-light
     Browser.Click    id=add-to-cart-sauce-labs-backpack
     Browser.Click    id=shopping_cart_container
     Browser.Click    id=checkout
@@ -39,16 +39,16 @@ Sauce Labs test 2
     Browser.New Page    url=https://www.saucedemo.com/
     Browser.Fill Text    xpath=//input[@name='user-name' and @id='user-name']    ${login}
     Browser.Fill Secret    id=password    $password
-    Browser.Click    css=span.select_container
-    Browser.Click    xpath=//option[@value='za']
-    ${item elements}=    Browser.Get Elements    xpath=//div[contains(@class,"inventory_item_name")]
+    Browser.Click    input#login-button
+    ${current sorting order}=    Browser.Get Text    css=span.active_option
+    BuiltIn.Log    Current sorting is ${current sorting order}
+    @{item elements}=    Browser.Get Elements    xpath=//div[contains(@class,"inventory_item_name")]
     @{items}=    BuiltIn.Create List
     FOR    ${element}    IN    @{item elements}
         ${item name}=    Browser.Get Text    ${element}
         ${item name}=    String.Convert To Lower Case    ${item name}
-        Collections.Append To List    @{items}    ${item name}
+        Collections.Append To List    ${items}    ${item name}
     END
     ${actual order items}=    Collections.Copy List    ${items}
     Collections.Sort List    ${items}
-    Collections.Reverse List    ${items}
     BuiltIn.Should Be Equal    ${items}    ${actual order items}
