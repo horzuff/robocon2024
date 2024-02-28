@@ -1,0 +1,5 @@
+username input: xpath=//input[@name='user-name' and @id='user-name']
+password input: id=password
+login button: input#login-button
+available logins field: id=login_credentials
+available password field: css=div.login_password

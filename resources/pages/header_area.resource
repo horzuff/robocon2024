@@ -2,6 +2,7 @@
 Library            Browser
 Library            String
 Library            Collections
+Variables          locators${/}header_area.yaml
 
 *** Keywords ***
 

@@ -1,18 +1,19 @@
 *** Settings ***
 Library            Browser
+Variables          locators${/}checkout_page.yaml
 
 *** Keywords ***
 Enter first name
     [Arguments]    ${name}
-    Browser.Fill Text    id=first-name    ${name}
+    Browser.Fill Text    ${first name input}    ${name}
 
 Enter last name
     [Arguments]    ${last name}
-    Browser.Fill Text    id=last-name    ${last name}
+    Browser.Fill Text    ${last name input}    ${last name}
 
 Enter postal code
     [Arguments]    ${code}
-    Browser.Fill Text    id=postal-code    ${code}
+    Browser.Fill Text    ${post code input}   ${code}
 
 Fill out shipping info
     [Arguments]    ${first name}    ${last name}    ${post code}
@@ -21,4 +22,4 @@ Fill out shipping info
     Enter postal code    ${post code}
 
 Continue to overview
-    Browser.Click    id=continue
+    Browser.Click    ${continue button}

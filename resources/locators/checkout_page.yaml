@@ -1,0 +1,4 @@
+first name input: id=first-name
+last name input: id=last-name
+post code input: id=postal-code
+continue button: id=continue

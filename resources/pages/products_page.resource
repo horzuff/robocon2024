@@ -7,7 +7,7 @@ Library            Collections
 
 Add item to cart
     [Arguments]    ${item name}
-    Browser.Click    xpath=//div[text()="${item name}"]/ancestor::div[@class="inventory_item_description"]//button[contains(@id,"add-to-cart-")]
+    Browser.Click    xpath=//div[text()='${item name}'']/ancestor::div[@class='inventory_item_description']//button[contains(@id,'add-to-cart-')]
 
 Set sorting
     [Arguments]    ${sorting type}
@@ -18,14 +18,14 @@ Validate sorting
     [Arguments]    ${sorting type}
     @{items}=    BuiltIn.Create List
     IF    '${sorting type}' in ['az', 'za']
-        ${item elements}=    Browser.Get Elements    xpath=//div[contains(@class,"inventory_item_name")]
+        ${item elements}=    Browser.Get Elements    xpath=//div[contains(@class,'inventory_item_name')]
         FOR    ${element}    IN    @{item elements}
             ${item name}=    Browser.Get Text    ${element}
             ${item name}=    String.Convert To Lower Case    ${item name}
             Collections.Append To List    @{items}    ${item name}
         END
     ELSE IF    '${sorting type}' in ['lohi', 'hilo']
-        ${item elements}=    Browser.Get Elements    xpath=//div[contains(@class,"inventory_item_price")]
+        ${item elements}=    Browser.Get Elements    xpath=//div[contains(@class,'inventory_item_price')]
         FOR    ${element}    IN    @{item elements}
             ${item name}=    Browser.Get Text    ${element}
             ${item name}=    String.Convert To Lower Case    ${item name}

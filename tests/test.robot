@@ -3,17 +3,17 @@ Library            Browser
 Library            String
 Library            Debugger
 Library            Collections
-Resource           .\utils\browser_management.resource
-Resource           .\pages\login_page.resource
-Resource           .\pages\products_page.resource
-Resource           .\pages\shopping_cart_page.resource
-Resource           .\pages\checkout_page.resource
-Resource           .\pages\order_overview_page.resource
-Resource           .\pages\header_area.resource
+Resource           utils${/}browser_management.resource
+Resource           pages${/}login_page.resource
+Resource           pages${/}products_page.resource
+Resource           pages${/}shopping_cart_page.resource
+Resource           pages${/}checkout_page.resource
+Resource           pages${/}order_overview_page.resource
+Resource           pages${/}header_area.resource
 
 *** Test Cases ***
 Sauce labs test 1
-    browser_management.Set up browser    headless=False    viewport={"width": 1360, "height": 766}
+    browser_management.Open sauce labs demo site    headless=False    viewport={"width": 1360, "height": 766}
     @{logins}=    login_page.Get available logins
     ${password}=    login_page.Get password
     VAR    ${login}    ${logins}[0]    scope=SUITE
@@ -30,7 +30,7 @@ Sauce labs test 1
     Browser.Close Browser
 
 Sauce Labs test 2
-    browser_management.Set up browser    headless=False    viewport={"width": 1360, "height": 766}
+    browser_management.Open sauce labs demo site    headless=False    viewport={"width": 1360, "height": 766}
     @{logins}=    login_page.Get available logins
     ${password}=    login_page.Get password
     VAR    ${login}    ${logins}[0]    scope=SUITE

@@ -1,0 +1,6 @@
+shopping cart button: id=shopping_cart_container
+menu button: id=react-burger-menu-btn
+logout button: id=logout_sidebar_link #available only after clicking the menu button
+about button: id=about_sidebar_link #available only after clicking the menu button
+reset app button: id=reset_sidebar_link #available only after clicking the menu button
+all items button: id=inventory_sidebar_link #available only after clicking the menu button
