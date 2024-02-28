@@ -1,4 +1,3 @@
 --outputdir .\results
 --pythonpath .\resources
---include WIP
 tests

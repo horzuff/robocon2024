@@ -16,7 +16,6 @@ iFrames test
     BuiltIn.Should Be True    ${status}
 
 Shadow Dom test
-    [Tags]    WIP
     browser_management.Set up browser    https://www.htmlelements.com/demos/menu/shadow-dom/index.htm    headless=False
     Try accessing shadow dom with xpath
     Try accessing shadow dom with css
