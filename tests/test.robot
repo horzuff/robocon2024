@@ -35,6 +35,6 @@ Sauce Labs test 2
     VAR    ${login}    ${logins}[0]    scope=SUITE
     login_page.Login    ${login}    ${password}
     ${current sorting}=    products_page.Get current sorting
-    products_page.Validate sorting    za
+    products_page.Validate sorting    ${current sorting}
     header_area.Logout
     Browser.Close Browser

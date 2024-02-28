@@ -14,10 +14,17 @@ Add item to cart
     ${add item locator}=    BuiltIn.Replace Variables   ${add item to cart by name}
     Browser.Click    ${add item locator}
 
-Set sorting
-    [Arguments]    ${sorting type}
-    Browser.Click    ${sorting dropdown}
-    Browser.Click    ${sorting option.${sorting type}}
+Get current sorting
+    ${current sorting order}=    Browser.Get Text    css=span.active_option
+    IF    "${current sorting order}" == "Name (A to Z)"
+        RETURN    az
+    ELSE IF    "${current sorting order}" == "Name (Z to A)"
+        RETURN    za
+    ELSE IF    "${current sorting order}" == "Price (low to high)"
+        RETURN    lohi
+    ELSE IF    "${current sorting order}" == "Price (high to low)"
+        RETURN    hilo
+    END
 
 Validate sorting
     [Arguments]    ${sorting type}
