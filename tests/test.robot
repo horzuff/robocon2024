@@ -1,7 +1,6 @@
 *** Settings ***
 Library            Browser
 Library            String
-Library            Debugger
 Library            Collections
 Resource           utils${/}browser_management.resource
 Resource           pages${/}login_page.resource
@@ -35,7 +34,7 @@ Sauce Labs test 2
     ${password}=    login_page.Get password
     VAR    ${login}    ${logins}[0]    scope=SUITE
     login_page.Login    ${login}    ${password}
-    products_page.Set sorting    za
+    ${current sorting}=    products_page.Get current sorting
     products_page.Validate sorting    za
     header_area.Logout
     Browser.Close Browser
