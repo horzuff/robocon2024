@@ -1,5 +1,6 @@
 *** Settings ***
 Library            Browser
+Library            String
 
 *** Keywords ***
 Get available logins
@@ -18,5 +19,3 @@ Login
     Browser.Fill Text    xpath=//input[@name='user-name' and @id='user-name']    ${login}
     Browser.Fill Secret    id=password    $password
     Browser.Click    input#login-button
-
-    

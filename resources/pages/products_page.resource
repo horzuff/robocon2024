@@ -4,12 +4,10 @@ Library            String
 Library            Collections
 
 *** Keywords ***
+
 Add item to cart
     [Arguments]    ${item name}
     Browser.Click    xpath=//div[text()="${item name}"]/ancestor::div[@class="inventory_item_description"]//button[contains(@id,"add-to-cart-")]
-
-Go to shopping cart
-    Browser.Click    id=shopping_cart_container
 
 Set sorting
     [Arguments]    ${sorting type}
