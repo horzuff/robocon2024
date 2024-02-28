@@ -1,7 +1,6 @@
 *** Settings ***
 Library            Browser
 Library            String
-Library            Debugger
 Library            Collections
 
 *** Test Cases ***
@@ -53,6 +52,3 @@ Sauce Labs test 2
     Collections.Sort List    ${items}
     Collections.Reverse List    ${items}
     BuiltIn.Should Be Equal    ${items}    ${actual order items}
-    
-
-    Debugger.Debug
