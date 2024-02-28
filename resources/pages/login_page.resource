@@ -12,6 +12,7 @@ Get available logins
 Get password
     ${password field text}=    Browser.Get Text    css=div.login_password
     ${password}=    String.Fetch from right   ${password field text}    :
+    ${password}=    String.Strip String   ${password}
     RETURN    ${password}
 
 Login

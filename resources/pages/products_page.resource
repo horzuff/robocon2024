@@ -12,32 +12,40 @@ Add item to cart
     VAR    ${add item locator}    id=add-to-cart-${dash separated itemname}
     Browser.Click    ${add item locator}
 
-Set sorting
-    [Arguments]    ${sorting type}
-    Browser.Click    css=span.select_container
-    Browser.Click    xpath=//option[@value='${sorting type}']
+Get current sorting
+    ${current sorting order}=    Browser.Get Text    css=span.active_option
+    IF    "${current sorting order}" == "Name (A to Z)"
+        RETURN    az
+    ELSE IF    "${current sorting order}" == "Name (Z to A)"
+        RETURN    za
+    ELSE IF    "${current sorting order}" == "Price (low to high)"
+        RETURN    lohi
+    ELSE IF    "${current sorting order}" == "Price (high to low)"
+        RETURN    hilo
+    END
+    
 
 Validate sorting
     [Arguments]    ${sorting type}
     @{items}=    BuiltIn.Create List
     IF    '${sorting type}' in ['az', 'za']
-        ${item elements}=    Browser.Get Elements    xpath=//div[contains(@class,"inventory_item_name")]
+        @{item elements}=    Browser.Get Elements    xpath=//div[contains(@class,"inventory_item_name")]
         FOR    ${element}    IN    @{item elements}
             ${item name}=    Browser.Get Text    ${element}
             ${item name}=    String.Convert To Lower Case    ${item name}
-            Collections.Append To List    @{items}    ${item name}
+            Collections.Append To List    ${items}    ${item name}
         END
     ELSE IF    '${sorting type}' in ['lohi', 'hilo']
-        ${item elements}=    Browser.Get Elements    xpath=//div[contains(@class,"inventory_item_price")]
+        @{item elements}=    Browser.Get Elements    xpath=//div[contains(@class,"inventory_item_price")]
         FOR    ${element}    IN    @{item elements}
             ${item name}=    Browser.Get Text    ${element}
             ${item name}=    String.Convert To Lower Case    ${item name}
-            Collections.Append To List    @{items}    ${item name}
+            Collections.Append To List    ${items}    ${item name}
         END
     END
     ${actual order items}=    Collections.Copy List    ${items}
     Collections.Sort List    ${items}
-    IF    ${sorting type} in ['za', 'hilo']
+    IF    '${sorting type}' in ['za', 'hilo']
         Collections.Reverse List    ${items}
     END
     BuiltIn.Should Be Equal    ${items}    ${actual order items}
