@@ -14,6 +14,8 @@ iFrames test
     ${status}=    BuiltIn.Run Keyword And Return Status
     ...        Browser.Get Element    xpath=//body[@id="tinymce"]
     BuiltIn.Should Be True    ${status}
+    Browser.Set Selector Prefix    ${old prefix}
+    Browser.Close Browser
 
 Shadow Dom test
     browser_management.Set up browser    https://www.htmlelements.com/demos/menu/shadow-dom/index.htm    headless=False
@@ -21,6 +23,7 @@ Shadow Dom test
     Try accessing shadow dom with css
     Try accessing shadow dom with text
     Avoid getting into shadow dom with :light engines
+    Browser.Close Browser
 
 
 *** Keywords ***

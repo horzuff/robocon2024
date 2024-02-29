@@ -1,5 +1,5 @@
 *** Settings ***
-Library            Browser
+Library            Browser    timeout=20s
 Variables          locators${/}login_page.yaml
 
 
@@ -16,6 +16,13 @@ Set up browser
     [Arguments]    ${url}    ${browser}=chromium    ${headless}=True    ${slowMo}=0:00:00.5
     ...        ${viewport}={"width": 1920, "height": 1080}
     Browser.New Browser    ${browser}    ${headless}    slowMo=${slowMo}
-    Browser.New Context    viewport=${viewport}
+    ${har_config}=
+        ...    BuiltIn.Create Dictionary
+        ...    path=${OUTPUT_DIR}${/}har.file
+        ...    omitContent=False
+    ${vid_config}=
+        ...    BuiltIn.Create Dictionary
+        ...    dir=${OUTPUT_DIR}
+    Browser.New Context    viewport=${viewport}    recordHar=${har_config}    recordVideo=${vid_config}
     Browser.New Page    url=${url}
     

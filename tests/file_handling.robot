@@ -1,11 +1,13 @@
 *** Settings ***
 Library            Browser
 Library            OperatingSystem
+Library            Debugger
 Resource           utils${/}browser_management.resource
 
 *** Test Cases ***
 
 File downloading test
+    [Tags]    debug
     browser_management.Set up browser    https://the-internet.herokuapp.com/download    headless=False
     Download by href
     Download with saveAs
