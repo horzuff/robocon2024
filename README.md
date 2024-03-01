@@ -1,7 +1,6 @@
 I assume You already have python installed and are using windows. The first step will be to install poetry and create a new project with it. We'll be using poetry, even though we won't be publishing anything, because it sometimes helps with avoiding corporate policies regarding repositories like npm etc.
 ```python
 python -m venv .venv
-.venv/scripts/Activate.ps1
 python -m pip install --upgrade pip setuptools
 python -m pip install poetry
 ```
@@ -15,7 +14,12 @@ Then when asked for main dependencies add robotframework and robotframework-brow
 Now lets install all dependencies, we're not going to publish this 
 `poetry install -no-root`
 
-Then we need to initialize our browser environment
+Now activate Your venv
+
+
+'.venv/scripts/Activate.ps1'
+
+Then initialize the Browser environment
 
 `rfbrowser -init`
 
